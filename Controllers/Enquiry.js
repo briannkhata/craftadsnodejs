@@ -4,11 +4,7 @@ const Enquiry = require("../Models/Enquiry.js");
 
 const GetAll = async (req, res) => {
   try {
-    const Enquirys = await Enquiry.findAll({
-      where: {
-        Deleted: 0,
-      },
-    });
+    const Enquirys = await Enquiry.findAll();
     res.status(200).json({
       success: 1,
       data: Enquirys,

@@ -76,8 +76,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 const categoryRoutes = require("./Routes/Category.js");
+const userRoutes = require("./Routes/User.js");
+const skillRoutes = require("./Routes/Skill.js");
+const paymentRoutes = require("./Routes/payment.js");
+const paymentModeRoutes = require("./Routes/PaymentMode.js");
+const referalRoutes = require("./Routes/Referal.js");
+const likeRoutes = require("./Routes/Like.js");
+const profileViewRoutes = require("./Routes/ProfileView.js");
+const profileReviewRoutes = require("./Routes/ProfileReview.js");
+const enquiryRoutes = require("./Routes/Enquiry.js");
 
 app.use("/api/v1/category/", categoryRoutes);
+app.use("/api/v1/user/", userRoutes);
+app.use("/api/v1/skill/", skillRoutes);
+app.use("/api/v1/payment/", paymentRoutes);
+app.use("/api/v1/paymentMode/", paymentModeRoutes);
+app.use("/api/v1/referal/", referalRoutes);
+app.use("/api/v1/like/", likeRoutes);
+app.use("/api/v1/profileReview/", profileReviewRoutes);
+app.use("/api/v1/profileView/", profileViewRoutes);
+app.use("/api/v1/enquiry/", enquiryRoutes);
 
 app.listen(PORT, () => {
   console.log(`SERVER RUNNING AT ${PORT}`);
