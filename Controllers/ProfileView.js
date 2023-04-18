@@ -1,96 +1,98 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../database/database.js");
-const User = require("../Models/User.js");
+const ProfileView = require("../Models/ProfileView.js");
 
 const GetAll = async (req, res) => {
   try {
-    const Users = await User.findAll({
+    const ProfileViews = await ProfileView.findAll({
       where: {
         Deleted: 0,
       },
     });
     res.status(200).json({
       success: 1,
-      data: Users,
+      data: ProfileViews,
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error GETTING Users : ${err}` });
+      .json({ success: 0, message: `Error GETTING ProfileViews : ${err}` });
   }
 };
 
 const GetById = async (req, res) => {
   try {
-    let id = req.body.UserId;
-    const User = await User.findOne({
+    let id = req.body.ProfileViewId;
+    const ProfileView = await ProfileView.findOne({
       where: {
-        UserId: id,
+        ProfileViewId: id,
       },
     });
     res.status(200).json({
       success: 1,
-      data: User,
+      data: ProfileView,
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error GETTING User : ${err}` });
+      .json({ success: 0, message: `Error GETTING ProfileView : ${err}` });
   }
 };
 
 const Add = async (req, res) => {
   try {
-    await User.create(req.body);
+    await ProfileView.create(req.body);
     res.status(200).json({
       success: 1,
-      message: "User Successfully Added",
+      message: "ProfileView Successfully Added",
     });
   } catch (err) {
-    res.status(500).json({ success: 0, message: `Error ADDING User : ${err}` });
+    res
+      .status(500)
+      .json({ success: 0, message: `Error ADDING ProfileView : ${err}` });
   }
 };
 
 const Update = async (req, res) => {
   try {
-    let id = req.body.UserId;
-    await User.update(req.body, {
+    let id = req.body.ProfileViewId;
+    await ProfileView.update(req.body, {
       where: {
-        UserId: id,
+        ProfileViewId: id,
       },
     });
     res.status(200).json({
       success: 1,
-      message: "User updated SuccessfullY",
+      message: "ProfileView updated SuccessfullY",
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error UPDATING User : ${err}` });
+      .json({ success: 0, message: `Error UPDATING ProfileView : ${err}` });
   }
 };
 
 const Remove = async (req, res) => {
   try {
     let id = req.params.id;
-    await User.update(
+    await ProfileView.update(
       {
         Deleted: 1,
       },
       {
         where: {
-          UserId: id,
+          ProfileViewId: id,
         },
       }
     );
     res.status(200).json({
       success: 1,
-      message: "User DELETED SuccessfullY",
+      message: "ProfileView DELETED SuccessfullY",
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error DELETING User : ${err}` });
+      .json({ success: 0, message: `Error DELETING ProfileView : ${err}` });
   }
 };
 

@@ -1,96 +1,98 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../database/database.js");
-const User = require("../Models/User.js");
+const ProfileReview = require("../Models/ProfileReview.js");
 
 const GetAll = async (req, res) => {
   try {
-    const Users = await User.findAll({
+    const ProfileReviews = await ProfileReview.findAll({
       where: {
         Deleted: 0,
       },
     });
     res.status(200).json({
       success: 1,
-      data: Users,
+      data: ProfileReviews,
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error GETTING Users : ${err}` });
+      .json({ success: 0, message: `Error GETTING ProfileReviews : ${err}` });
   }
 };
 
 const GetById = async (req, res) => {
   try {
-    let id = req.body.UserId;
-    const User = await User.findOne({
+    let id = req.body.ProfileReviewId;
+    const ProfileReview = await ProfileReview.findOne({
       where: {
-        UserId: id,
+        ProfileReviewId: id,
       },
     });
     res.status(200).json({
       success: 1,
-      data: User,
+      data: ProfileReview,
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error GETTING User : ${err}` });
+      .json({ success: 0, message: `Error GETTING ProfileReview : ${err}` });
   }
 };
 
 const Add = async (req, res) => {
   try {
-    await User.create(req.body);
+    await ProfileReview.create(req.body);
     res.status(200).json({
       success: 1,
-      message: "User Successfully Added",
+      message: "ProfileReview Successfully Added",
     });
   } catch (err) {
-    res.status(500).json({ success: 0, message: `Error ADDING User : ${err}` });
+    res
+      .status(500)
+      .json({ success: 0, message: `Error ADDING ProfileReview : ${err}` });
   }
 };
 
 const Update = async (req, res) => {
   try {
-    let id = req.body.UserId;
-    await User.update(req.body, {
+    let id = req.body.ProfileReviewId;
+    await ProfileReview.update(req.body, {
       where: {
-        UserId: id,
+        ProfileReviewId: id,
       },
     });
     res.status(200).json({
       success: 1,
-      message: "User updated SuccessfullY",
+      message: "ProfileReview updated SuccessfullY",
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error UPDATING User : ${err}` });
+      .json({ success: 0, message: `Error UPDATING ProfileReview : ${err}` });
   }
 };
 
 const Remove = async (req, res) => {
   try {
     let id = req.params.id;
-    await User.update(
+    await ProfileReview.update(
       {
         Deleted: 1,
       },
       {
         where: {
-          UserId: id,
+          ProfileReviewId: id,
         },
       }
     );
     res.status(200).json({
       success: 1,
-      message: "User DELETED SuccessfullY",
+      message: "ProfileReview DELETED SuccessfullY",
     });
   } catch (err) {
     res
       .status(500)
-      .json({ success: 0, message: `Error DELETING User : ${err}` });
+      .json({ success: 0, message: `Error DELETING ProfileReview : ${err}` });
   }
 };
 
