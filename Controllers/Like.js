@@ -47,7 +47,7 @@ const Add = async (req, res) => {
       message: "User Liked Successfully",
     });
   } catch (err) {
-    res.status(500).json({ success: 0, message: `Error likinf User : ${err}` });
+    res.status(500).json({ success: 0, message: `Error liking User : ${err}` });
   }
 };
 

@@ -9,6 +9,7 @@ User.post("/add/", controller.Add);
 User.put("/delete/:id", controller.Remove);
 User.put("/update/", controller.Update);
 User.post("/register/", controller.Register);
-User.put("/updateProfile/", controller.UpdatePrifle);
+User.put("/updateProfile/", controller.UpdateProfile);
+User.get("/getLocation/", controller.getLocation);
 
 module.exports = User;

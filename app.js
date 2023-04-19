@@ -19,8 +19,8 @@ app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const categoryRoutes = require("./Routes/Category.js");
 const userRoutes = require("./Routes/User.js");
