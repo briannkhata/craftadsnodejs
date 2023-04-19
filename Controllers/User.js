@@ -55,80 +55,80 @@ const Add = async (req, res) => {
   }
 };
 
-const getLocation = async (req, res) => {
-  const hostname = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://api.ipdata.co/${hostname}`, {
-      params: {
-        "api-key": process.env.IP_DATA,
-      },
-    });
-    return json(response.data);
-  } catch (error) {
-    res.status(500).send("Internal Server Error");
-  }
-};
+// const getLocation = async (req, res) => {
+//   const hostname = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://api.ipdata.co/${hostname}`, {
+//       params: {
+//         "api-key": process.env.IP_DATA,
+//       },
+//     });
+//     return json(response.data);
+//   } catch (error) {
+//     res.status(500).send("Internal Server Error");
+//   }
+// };
 
 const Register = async (req, res) => {
-  const getCurrency = async (req, res) => {
-    try {
-      const response = await getLocation(req, res);
-      const { currency } = response.data;
-      return currency;
-    } catch (error) {
-      res.status(500).send("Internal Server Error");
-    }
-  };
+  // const getCurrency = async (req, res) => {
+  //   try {
+  //     const response = await getLocation(req, res);
+  //     const { currency } = response.data;
+  //     return currency;
+  //   } catch (error) {
+  //     res.status(500).send("Internal Server Error");
+  //   }
+  // };
 
-  const getCountry = async (req, res) => {
-    try {
-      const response = await getLocation(req, res);
-      const { country_name } = response.data;
-      return country_name;
-    } catch (error) {
-      res.status(500).send("Internal Server Error");
-    }
-  };
+  // const getCountry = async (req, res) => {
+  //   try {
+  //     const response = await getLocation(req, res);
+  //     const { country_name } = response.data;
+  //     return country_name;
+  //   } catch (error) {
+  //     res.status(500).send("Internal Server Error");
+  //   }
+  // };
 
-  const getCountryCode = async (req, res) => {
-    try {
-      const response = await getLocation(req, res);
-      const { country_code } = response.data;
-      return country_code;
-    } catch (error) {
-      res.status(500).send("Internal Server Error");
-    }
-  };
+  // const getCountryCode = async (req, res) => {
+  //   try {
+  //     const response = await getLocation(req, res);
+  //     const { country_code } = response.data;
+  //     return country_code;
+  //   } catch (error) {
+  //     res.status(500).send("Internal Server Error");
+  //   }
+  // };
 
-  const getRegion = async (req, res) => {
-    try {
-      const response = await getLocation(req, res);
-      const { region } = response.data;
-      return region;
-    } catch (error) {
-      res.status(500).send("Internal Server Error");
-    }
-  };
+  // const getRegion = async (req, res) => {
+  //   try {
+  //     const response = await getLocation(req, res);
+  //     const { region } = response.data;
+  //     return region;
+  //   } catch (error) {
+  //     res.status(500).send("Internal Server Error");
+  //   }
+  // };
 
-  const getRegionCode = async (req, res) => {
-    try {
-      const response = await getLocation(req, res);
-      const { region_code } = response.data;
-      return region_code;
-    } catch (error) {
-      res.status(500).send("Internal Server Error");
-    }
-  };
+  // const getRegionCode = async (req, res) => {
+  //   try {
+  //     const response = await getLocation(req, res);
+  //     const { region_code } = response.data;
+  //     return region_code;
+  //   } catch (error) {
+  //     res.status(500).send("Internal Server Error");
+  //   }
+  // };
 
-  const getCity = async (req, res) => {
-    try {
-      const response = await getLocation(req, res);
-      const { city } = response.data;
-      return city;
-    } catch (error) {
-      res.status(500).send("Internal Server Error");
-    }
-  };
+  // const getCity = async (req, res) => {
+  //   try {
+  //     const response = await getLocation(req, res);
+  //     const { city } = response.data;
+  //     return city;
+  //   } catch (error) {
+  //     res.status(500).send("Internal Server Error");
+  //   }
+  // };
 
   try {
     const { Phone } = req.body;
@@ -224,7 +224,7 @@ module.exports = {
   GetAll,
   GetById,
   Add,
-  getLocation,
+  //getLocation,
   Register,
   Update,
   UpdateProfile,
