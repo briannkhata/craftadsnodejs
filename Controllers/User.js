@@ -51,6 +51,20 @@ const Add = async (req, res) => {
   }
 };
 
+const Register = async (req, res) => {
+  try {
+    await User.create(req.body);
+    res.status(200).json({
+      success: 1,
+      message: "ACCOUNT CREATED successfully.! Please Login and Update profile",
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ success: 0, message: `Error CREATING ACCOUNT : ${err}` });
+  }
+};
+
 const Update = async (req, res) => {
   try {
     let id = req.body.UserId;
@@ -67,6 +81,25 @@ const Update = async (req, res) => {
     res
       .status(500)
       .json({ success: 0, message: `Error UPDATING User : ${err}` });
+  }
+};
+
+const UpdatePrifle = async (req, res) => {
+  try {
+    let id = req.body.UserId;
+    await User.update(req.body, {
+      where: {
+        UserId: id,
+      },
+    });
+    res.status(200).json({
+      success: 1,
+      message: "Profle updated SuccessfullY",
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ success: 0, message: `Error UPDATING profile : ${err}` });
   }
 };
 
@@ -98,6 +131,8 @@ module.exports = {
   GetAll,
   GetById,
   Add,
+  Register,
   Update,
+  UpdatePrifle,
   Remove,
 };

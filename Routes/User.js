@@ -8,5 +8,7 @@ User.get("/getById/:id", controller.GetById);
 User.post("/add/", controller.Add);
 User.put("/delete/:id", controller.Remove);
 User.put("/update/", controller.Update);
+User.post("/register/", controller.Register);
+User.put("/updateProfile/", controller.UpdatePrifle);
 
 module.exports = User;
