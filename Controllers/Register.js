@@ -97,39 +97,39 @@ const Register = async (req, res) => {
 
     res.send(City);
 
-    const { Name, Phone, Email, Password } = req.body;
-    const hashedPassword = await bcrypt.hash(Password, 20);
+    // const { Name, Phone, Email, Password } = req.body;
+    // const hashedPassword = await bcrypt.hash(Password, 20);
 
-    const alreadyExists = await User.findOne({ where: { Phone } }).catch(
-      (err) => {
-        console.log("Error :", err);
-      }
-    );
+    // const alreadyExists = await User.findOne({ where: { Phone } }).catch(
+    //   (err) => {
+    //     console.log("Error :", err);
+    //   }
+    // );
 
-    if (alreadyExists) {
-      return res.status(500).json({
-        success: 0,
-        message: "PHONE ALEADY EXISTS..!",
-      });
-    }
+    // if (alreadyExists) {
+    //   return res.status(500).json({
+    //     success: 0,
+    //     message: "PHONE ALEADY EXISTS..!",
+    //   });
+    // }
 
-    await User.create({
-      Name: Name,
-      Phone: Phone,
-      Email: Email,
-      Password: hashedPassword,
-      City: City,
-      Country: Country,
-      CountryCode: CountryCode,
-      RegionCode: RegionCode,
-      Region: Region,
-      CountryCallingCode: CountryCallingCode,
-    });
-    res.status(200).json({
-      success: 1,
-      message:
-        "ACCOUNT CREATED successfully..! Please Login and Update profile",
-    });
+    // await User.create({
+    //   Name: Name,
+    //   Phone: Phone,
+    //   Email: Email,
+    //   Password: hashedPassword,
+    //   City: City,
+    //   Country: Country,
+    //   CountryCode: CountryCode,
+    //   RegionCode: RegionCode,
+    //   Region: Region,
+    //   CountryCallingCode: CountryCallingCode,
+    // });
+    // res.status(200).json({
+    //   success: 1,
+    //   message:
+    //     "ACCOUNT CREATED successfully..! Please Login and Update profile",
+    // });
   } catch (err) {
     res
       .status(500)
