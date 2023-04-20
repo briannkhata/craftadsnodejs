@@ -95,15 +95,15 @@ const Register = async (req, res) => {
     const Region = await getLocationRegion(req, res);
     const CountryCallingCode = await getLocationCallingCode(req, res);
 
-    const [City, Country, CountryCode, RegionCode, Region, CountryCallingCode] =
-      await Promise.all([
-        getLocationCity(req, res),
-        getLocationCountry(req, res),
-        getLocationCountyCode(req, res),
-        getLocationRegionCode(req, res),
-        getLocationRegion(req, res),
-        getLocationCallingCode(req, res),
-      ]);
+    // const [City, Country, CountryCode, RegionCode, Region, CountryCallingCode] =
+    //   await Promise.all([
+    //     getLocationCity(req, res),
+    //     getLocationCountry(req, res),
+    //     getLocationCountyCode(req, res),
+    //     getLocationRegionCode(req, res),
+    //     getLocationRegion(req, res),
+    //     getLocationCallingCode(req, res),
+    //   ]);
 
     const { Name, Phone, Email, Password } = req.body;
     const hashedPassword = await bcrypt.hash(Password, 20);
