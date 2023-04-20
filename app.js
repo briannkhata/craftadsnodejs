@@ -7,6 +7,7 @@ const morgan = require("morgan");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("./database/database.js");
+require("./auth/Passport.js");
 
 const corsOptions = {
   origin: "http://localhost:7000",
@@ -32,7 +33,11 @@ const likeRoutes = require("./Routes/Like.js");
 const profileViewRoutes = require("./Routes/ProfileView.js");
 const profileReviewRoutes = require("./Routes/ProfileReview.js");
 const enquiryRoutes = require("./Routes/Enquiry.js");
+const loginRoutes = require("./Routes/Login.js");
+const registerRoutes = require("./Routes/Register.js");
 
+app.use("/api/v1/login/", loginRoutes);
+app.use("/api/v1/register/", registerRoutes);
 app.use("/api/v1/category/", categoryRoutes);
 app.use("/api/v1/user/", userRoutes);
 app.use("/api/v1/skill/", skillRoutes);
