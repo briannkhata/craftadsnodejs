@@ -27,10 +27,6 @@ const sequelize = new Sequelize(
     try {
       await sequelize.authenticate();
       console.log("Connection has been established successfully.");
-
-      const results = await sequelize.query("SELECT * FROM users");
-      console.log(results);
-
       break; // Exit the loop if successful
     } catch (error) {
       console.error("Unable to connect to the database:", error);
