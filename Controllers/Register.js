@@ -95,6 +95,8 @@ const Register = async (req, res) => {
     const Region = getLocationRegion(req, res);
     const CountryCallingCode = getLocationCallingCode(req, res);
 
+    res.send(City);
+
     const { Name, Phone, Email, Password } = req.body;
     const hashedPassword = await bcrypt.hash(Password, 20);
 
