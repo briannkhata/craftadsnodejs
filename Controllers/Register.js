@@ -96,7 +96,7 @@ const Register = async (req, res) => {
     const CountryCallingCode = getLocationCallingCode(req, res);
 
     const { Name, Phone, Email, Password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 20);
+    const hashedPassword = await bcrypt.hash(Password, 20);
 
     const alreadyExists = await User.findOne({ where: { Phone } }).catch(
       (err) => {
