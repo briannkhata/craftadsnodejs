@@ -1,19 +1,18 @@
 const { Sequelize } = require("sequelize");
 const sequelize = require("./database.js");
-const User = require("./Models/User.js");
-const Category = require("./Models/Category.js");
-const Image = require("./Models/Image.js");
-const Like = require("./Models/Like.js");
-const Payment = require("./Models/Payment.js");
-const ProfileReview = require("./Models/ProfileReview.js");
-const ProfileView = require("./Models/ProfileView.js");
-const Referal = require("./Models/Referal.js");
-const Skill = require("./Models/Skill.js");
-const Testimony = require("./Models/Testimony.js");
-const Setting = require("./Models/Setting.js");
-const Enquiry = require("./Models/Enquiry.js");
-const PaymentMode = require("./Models/PaymentMode.js");
-
+const User = require("../Models/User.js");
+const Category = require("../Models/Category.js");
+const Image = require("../Models/Image.js");
+const Like = require("../Models/Like.js");
+const Payment = require("../Models/Payment.js");
+const ProfileReview = require("../Models/ProfileReview.js");
+const ProfileView = require("../Models/ProfileView.js");
+const Referal = require("../Models/Referal.js");
+const Skill = require("../Models/Skill.js");
+const Testimony = require("../Models/Testimony.js");
+const Setting = require("../Models/Setting.js");
+const Enquiry = require("../Models/Enquiry.js");
+const PaymentMode = require("../Models/PaymentMode.js");
 
 //relationships
 Category.hasOne(User, {
