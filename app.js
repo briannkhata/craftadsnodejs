@@ -4,19 +4,19 @@ require("dotenv").config();
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-
+require("./database/runModels.js");
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("./database/database.js");
 require("./auth/Passport.js");
 
-const corsOptions = {
-  origin: "http://localhost:7000",
-};
+// const corsOptions = {
+//   origin: "http://localhost:7000",
+// };
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
