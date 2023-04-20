@@ -88,12 +88,12 @@ const getLocationCity = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
-    const City = getLocationCity(req, res);
-    const Country = getLocationCountry(req, res);
-    const CountryCode = getLocationCountyCode(req, res);
-    const RegionCode = getLocationRegionCode(req, res);
-    const Region = getLocationRegion(req, res);
-    const CountryCallingCode = getLocationCallingCode(req, res);
+    const City = await getLocationCity(req, res);
+    const Country = await getLocationCountry(req, res);
+    const CountryCode = await getLocationCountyCode(req, res);
+    const RegionCode = await getLocationRegionCode(req, res);
+    const Region = await getLocationRegion(req, res);
+    const CountryCallingCode = await getLocationCallingCode(req, res);
 
     res.send(City);
 
