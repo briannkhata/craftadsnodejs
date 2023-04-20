@@ -11,13 +11,14 @@ require("dotenv").config();
 
 const getLocationRegion = async (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { region } = response.data;
-    return region;
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
+  res.send(ip);
+  // try {
+  //   const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+  //   const { region } = response.data;
+  //   return region;
+  // } catch (error) {
+  //   res.status(500).send(`${error} : Internal Server Error`);
+  // }
 };
 
 const getLocationRegionCode = async (req, res) => {
