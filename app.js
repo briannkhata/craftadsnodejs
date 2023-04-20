@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const categoryRoutes = require("./Routes/Category.js");
 const userRoutes = require("./Routes/User.js");
 const skillRoutes = require("./Routes/Skill.js");
-const paymentRoutes = require("./Routes/payment.js");
+const paymentRoutes = require("./Routes/Payment.js");
 const paymentModeRoutes = require("./Routes/PaymentMode.js");
 const referalRoutes = require("./Routes/Referal.js");
 const likeRoutes = require("./Routes/Like.js");
