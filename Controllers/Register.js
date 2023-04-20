@@ -11,14 +11,13 @@ require("dotenv").config();
 
 const getLocationRegion = async (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  res.send(ip);
-  // try {
-  //   const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-  //   const { region } = response.data;
-  //   return region;
-  // } catch (error) {
-  //   res.status(500).send(`${error} : Internal Server Error`);
-  // }
+  try {
+    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+    const { region } = response.data;
+    return res.send(region);
+  } catch (error) {
+    res.status(500).send(`${error} : Internal Server Error`);
+  }
 };
 
 const getLocationRegionCode = async (req, res) => {
@@ -26,7 +25,7 @@ const getLocationRegionCode = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { region_code } = response.data;
-    return region_code;
+    return res.send(region_code);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
@@ -37,7 +36,7 @@ const getLocationCountry = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { country_name } = response.data;
-    return country_name;
+    return res.send(country_name);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
@@ -48,7 +47,7 @@ const getLocationCountyCode = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { country } = response.data;
-    return country;
+    return res.send(country);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
@@ -59,7 +58,7 @@ const getLocationCurrency = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { currency } = response.data;
-    return currency;
+    return res.send(currency);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
@@ -70,7 +69,7 @@ const getLocationCallingCode = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { count_calling_code } = response.data;
-    return count_calling_code;
+    return res.send(count_calling_code);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
@@ -81,7 +80,7 @@ const getLocationCity = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { city } = response.data;
-    return city;
+    return res.send(city);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
