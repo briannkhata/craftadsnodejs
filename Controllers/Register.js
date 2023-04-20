@@ -14,7 +14,7 @@ const getLocationRegion = async (req, res) => {
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { region } = response.data;
-    res.send(region);
+    res.json(region);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
   }
@@ -88,12 +88,12 @@ const getLocationCity = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
-    // const City = await getLocationCity(req, res);
-    // const Country = await getLocationCountry(req, res);
-    // const CountryCode = await getLocationCountyCode(req, res);
-    // const RegionCode = await getLocationRegionCode(req, res);
-    // const Region = await getLocationRegion(req, res);
-    // const CountryCallingCode = await getLocationCallingCode(req, res);
+    const City = await getLocationCity(req, res);
+    const Country = await getLocationCountry(req, res);
+    const CountryCode = await getLocationCountyCode(req, res);
+    const RegionCode = await getLocationRegionCode(req, res);
+    const Region = await getLocationRegion(req, res);
+    const CountryCallingCode = await getLocationCallingCode(req, res);
 
     const [City, Country, CountryCode, RegionCode, Region, CountryCallingCode] =
       await Promise.all([
@@ -105,41 +105,39 @@ const Register = async (req, res) => {
         getLocationCallingCode(req, res),
       ]);
 
-    res.send(Country);
+    const { Name, Phone, Email, Password } = req.body;
+    const hashedPassword = await bcrypt.hash(Password, 20);
 
-    // const { Name, Phone, Email, Password } = req.body;
-    // const hashedPassword = await bcrypt.hash(Password, 20);
+    const alreadyExists = await User.findOne({ where: { Phone } }).catch(
+      (err) => {
+        console.log("Error :", err);
+      }
+    );
 
-    // const alreadyExists = await User.findOne({ where: { Phone } }).catch(
-    //   (err) => {
-    //     console.log("Error :", err);
-    //   }
-    // );
+    if (alreadyExists) {
+      return res.status(500).json({
+        success: 0,
+        message: "PHONE ALEADY EXISTS..!",
+      });
+    }
 
-    // if (alreadyExists) {
-    //   return res.status(500).json({
-    //     success: 0,
-    //     message: "PHONE ALEADY EXISTS..!",
-    //   });
-    // }
-
-    // await User.create({
-    //   Name: Name,
-    //   Phone: Phone,
-    //   Email: Email,
-    //   Password: hashedPassword,
-    //   City: City,
-    //   Country: Country,
-    //   CountryCode: CountryCode,
-    //   RegionCode: RegionCode,
-    //   Region: Region,
-    //   CountryCallingCode: CountryCallingCode,
-    // });
-    // res.status(200).json({
-    //   success: 1,
-    //   message:
-    //     "ACCOUNT CREATED successfully..! Please Login and Update profile",
-    // });
+    await User.create({
+      Name: Name,
+      Phone: Phone,
+      Email: Email,
+      Password: hashedPassword,
+      City: City,
+      Country: Country,
+      CountryCode: CountryCode,
+      RegionCode: RegionCode,
+      Region: Region,
+      CountryCallingCode: CountryCallingCode,
+    });
+    res.status(200).json({
+      success: 1,
+      message:
+        "ACCOUNT CREATED successfully..! Please Login and Update profile",
+    });
   } catch (err) {
     res
       .status(500)
