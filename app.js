@@ -4,7 +4,7 @@ require("dotenv").config();
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-require("./database/runModels.js");
+//require("./database/runModels.js");
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("./database/database.js");
 require("./auth/Passport.js");

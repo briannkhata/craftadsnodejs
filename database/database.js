@@ -2,9 +2,9 @@ const Sequelize = require("sequelize");
 require("dotenv").config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
+  "postgres://craftads:Epd2o4vBCauEqgv8VaWAdssIDVteYvk4@dpg-ch0fsob3cv2c5b44ralg-a/craftads",
   "postgres",
-  process.env.DB_PASS,
+  "Epd2o4vBCauEqgv8VaWAdssIDVteYvk4",
   {
     host: process.env.DB_HOST,
     dialect: "postgres",
