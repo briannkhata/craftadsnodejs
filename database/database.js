@@ -11,12 +11,33 @@ const sequelize = new Sequelize(
   // dialect: "postgres",
 );
 
+// (async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log("Connection has been established successfully.");
+//   } catch (error) {
+//     console.error("Unable to connect to the database:", error);
+//   }
+// })();
+
 (async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
+  let retries = 5;
+
+  while (retries > 0) {
+    try {
+      await sequelize.authenticate();
+      console.log("Connection has been established successfully.");
+
+      const results = await sequelize.query("SELECT * FROM users");
+      console.log(results);
+
+      break; // Exit the loop if successful
+    } catch (error) {
+      console.error("Unable to connect to the database:", error);
+
+      retries--; // Decrement retries counter
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait 5 seconds before retrying
+    }
   }
 })();
 
