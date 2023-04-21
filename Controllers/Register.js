@@ -110,22 +110,8 @@ const Register = async (req, res) => {
       region_code,
     } = response.data;
 
-    // const City = await getLocationCity(req, res);
-    // const Country = await getLocationCountry(req, res);
-    // const CountryCode = await getLocationCountyCode(req, res);
-    // const RegionCode = await getLocationRegionCode(req, res);
-    // const Region = await getLocationRegion(req, res);
-    // const CountryCallingCode = await getLocationCallingCode(req, res);
-
-    // const [City, Country, CountryCode, RegionCode, Region, CountryCallingCode] =
-    //   await Promise.all([
-    //     getLocationCity(req, res),
-    //     getLocationCountry(req, res),
-    //     getLocationCountyCode(req, res),
-    //     getLocationRegionCode(req, res),
-    //     getLocationRegion(req, res),
-    //     getLocationCallingCode(req, res),
-    //   ]);
+    const today = new Date();
+    const endTrialDate = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
 
     const { Name, Phone, Email, Password } = req.body;
     const hashedPassword = await bcrypt.hash(Password, 20);
@@ -154,11 +140,12 @@ const Register = async (req, res) => {
       RegionCode: region_code,
       Region: region,
       CountryCallingCode: country_calling_code,
+      TrialEndDate: endTrialDate,
     });
     res.status(200).json({
       success: 1,
       message:
-        "ACCOUNT CREATED successfully..! Please Login and Update profile",
+        "ACCOUNT CREATED successfully..! Please LOGIN and UPDATE YOUR profile",
     });
   } catch (err) {
     res

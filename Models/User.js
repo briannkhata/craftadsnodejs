@@ -49,7 +49,7 @@ const User = sequelize.define(
     Instagram: {
       type: DataTypes.TEXT,
     },
-    LinedIn: {
+    LinkedIn: {
       type: DataTypes.TEXT,
     },
     Featured: {
