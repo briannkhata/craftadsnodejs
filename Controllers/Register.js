@@ -9,98 +9,111 @@ const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
-const getLocationRegion = async (req, res) => {
+//const getLocationRegion = async (req, res) => {
   // const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   //const ip = req.ip;
   //const ip = req.socket.remoteAddress;
-  const ipquoted =
+//   const ipquoted =
+//     req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+//   const ip = ipquoted.slice(1, -1);
+
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { region } = response.data;
+//     //res.json(ip);
+//     res.send(region);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+// const getLocationRegionCode = async (req, res) => {
+//   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { region_code } = response.data;
+//     res.send(region_code);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+// const getLocationCountry = async (req, res) => {
+//   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { country_name } = response.data;
+//     res.send(country_name);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+// const getLocationCountyCode = async (req, res) => {
+//   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { country } = response.data;
+//     res.send(country);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+// const getLocationCurrency = async (req, res) => {
+//   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { currency } = response.data;
+//     res.send(currency);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+// const getLocationCallingCode = async (req, res) => {
+//   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { count_calling_code } = response.data;
+//     res.send(count_calling_code);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+// const getLocationCity = async (req, res) => {
+//   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//   try {
+//     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
+//     const { city } = response.data;
+//     res.send(city);
+//   } catch (error) {
+//     res.status(500).send(`${error} : Internal Server Error`);
+//   }
+// };
+
+const Register = async (req, res) => {
+  try {
+
+    const ipquoted =
     req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
   const ip = ipquoted.slice(1, -1);
 
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { region } = response.data;
-    //res.json(ip);
-    res.json(region);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
+    const { city, region,count_calling_code,currency,country,country_name,region_code } = response.data;
 
-const getLocationRegionCode = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { region_code } = response.data;
-    res.send(region_code);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
 
-const getLocationCountry = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { country_name } = response.data;
-    res.send(country_name);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
 
-const getLocationCountyCode = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { country } = response.data;
-    res.send(country);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
 
-const getLocationCurrency = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { currency } = response.data;
-    res.send(currency);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
 
-const getLocationCallingCode = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { count_calling_code } = response.data;
-    res.send(count_calling_code);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
-
-const getLocationCity = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  try {
-    const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { city } = response.data;
-    res.send(city);
-  } catch (error) {
-    res.status(500).send(`${error} : Internal Server Error`);
-  }
-};
-
-const Register = async (req, res) => {
-  try {
-    const City = await getLocationCity(req, res);
-    const Country = await getLocationCountry(req, res);
-    const CountryCode = await getLocationCountyCode(req, res);
-    const RegionCode = await getLocationRegionCode(req, res);
-    const Region = await getLocationRegion(req, res);
-    const CountryCallingCode = await getLocationCallingCode(req, res);
+    // const City = await getLocationCity(req, res);
+    // const Country = await getLocationCountry(req, res);
+    // const CountryCode = await getLocationCountyCode(req, res);
+    // const RegionCode = await getLocationRegionCode(req, res);
+    // const Region = await getLocationRegion(req, res);
+    // const CountryCallingCode = await getLocationCallingCode(req, res);
 
     // const [City, Country, CountryCode, RegionCode, Region, CountryCallingCode] =
     //   await Promise.all([
@@ -133,12 +146,12 @@ const Register = async (req, res) => {
       Phone: Phone,
       Email: Email,
       Password: hashedPassword,
-      City: City,
-      Country: Country,
-      CountryCode: CountryCode,
-      RegionCode: RegionCode,
-      Region: Region,
-      CountryCallingCode: CountryCallingCode,
+      City: city,
+      Country: country_name,
+      CountryCode: country,
+      RegionCode: region_code,
+      Region: region,
+      CountryCallingCode: count_calling_code,
     });
     res.status(200).json({
       success: 1,
@@ -154,11 +167,11 @@ const Register = async (req, res) => {
 
 module.exports = {
   Register,
-  getLocationRegion,
-  getLocationRegionCode,
-  getLocationCountry,
-  getLocationCountyCode,
-  getLocationCallingCode,
-  getLocationCurrency,
-  getLocationCity,
+  // getLocationRegion,
+  // getLocationRegionCode,
+  // getLocationCountry,
+  // getLocationCountyCode,
+  // getLocationCallingCode,
+  // getLocationCurrency,
+  // getLocationCity,
 };
