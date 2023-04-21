@@ -22,6 +22,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(sessions());
 
 const categoryRoutes = require("./Routes/Category.js");
 const userRoutes = require("./Routes/User.js");
