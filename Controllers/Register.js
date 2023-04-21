@@ -10,8 +10,10 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 const getLocationRegion = async (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  // const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   //const ip = req.ip;
+  const ip = req.socket.remoteAddress;
+
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { region } = response.data;
