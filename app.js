@@ -22,7 +22,14 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(sessions());
+app.use(
+  sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false,
+  })
+);
 
 const categoryRoutes = require("./Routes/Category.js");
 const userRoutes = require("./Routes/User.js");
