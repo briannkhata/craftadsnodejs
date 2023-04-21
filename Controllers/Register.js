@@ -13,13 +13,14 @@ const getLocationRegion = async (req, res) => {
   // const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   //const ip = req.ip;
   //const ip = req.socket.remoteAddress;
-  const ip =
+  const ipquoted =
     req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+  const ip = ipquoted.slice(1, -1);
 
   try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
     const { region } = response.data;
-    res.json(ip);
+    //res.json(ip);
     res.json(region);
   } catch (error) {
     res.status(500).send(`${error} : Internal Server Error`);
