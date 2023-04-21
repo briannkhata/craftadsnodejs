@@ -8,7 +8,8 @@ const morgan = require("morgan");
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("./database/database.js");
 require("./auth/Passport.js");
-
+const cookieParser = require("cookie-parser");
+const sessions = require("express-session");
 // const corsOptions = {
 //   origin: "http://localhost:7000",
 // };
