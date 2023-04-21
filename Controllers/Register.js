@@ -10,9 +10,9 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 //const getLocationRegion = async (req, res) => {
-  // const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  //const ip = req.ip;
-  //const ip = req.socket.remoteAddress;
+// const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+//const ip = req.ip;
+//const ip = req.socket.remoteAddress;
 //   const ipquoted =
 //     req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
 //   const ip = ipquoted.slice(1, -1);
@@ -95,18 +95,20 @@ require("dotenv").config();
 
 const Register = async (req, res) => {
   try {
-
     const ipquoted =
-    req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
-  const ip = ipquoted.slice(1, -1);
+      req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+    const ip = ipquoted.slice(1, -1);
 
-  try {
     const response = await axios.get(`https://ipapi.co/${ip}/json/`);
-    const { city, region,count_calling_code,currency,country,country_name,region_code } = response.data;
-
-
-
-
+    const {
+      city,
+      region,
+      count_calling_code,
+      currency,
+      country,
+      country_name,
+      region_code,
+    } = response.data;
 
     // const City = await getLocationCity(req, res);
     // const Country = await getLocationCountry(req, res);
