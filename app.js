@@ -13,6 +13,7 @@ const sessions = require("express-session");
 // const corsOptions = {
 //   origin: "http://localhost:7000",
 // };
+const oneDay = 1000 * 60 * 60 * 24;
 
 const app = express();
 const PORT = process.env.PORT || 5000;

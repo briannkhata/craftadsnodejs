@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
 
-const oneDay = 1000 * 60 * 60 * 24;
 
 // sessions({
 //   secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
