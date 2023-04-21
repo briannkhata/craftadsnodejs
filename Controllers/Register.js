@@ -103,7 +103,7 @@ const Register = async (req, res) => {
     const {
       city,
       region,
-      count_calling_code,
+      country_calling_code,
       currency,
       country,
       country_name,
@@ -153,7 +153,7 @@ const Register = async (req, res) => {
       CountryCode: country,
       RegionCode: region_code,
       Region: region,
-      CountryCallingCode: count_calling_code,
+      CountryCallingCode: country_calling_code,
     });
     res.status(200).json({
       success: 1,
